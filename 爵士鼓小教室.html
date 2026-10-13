@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>爵士鼓小學堂</title>
+<style>
+:root{--bg:#fff6ee;--card:#fff;--ink:#4a3b4f;--sub:#85748b;--pink:#ff8fb1;--mint:#7fdcc0;--yel:#ffd35c;--lav:#b5a6ff;--line:#ffdccb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2232;--card:#3a3044;--ink:#fdf0f5;--sub:#cdbad6;--line:#50435c}}
+:root[data-theme="dark"]{--bg:#2a2232;--card:#3a3044;--ink:#fdf0f5;--sub:#cdbad6;--line:#50435c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Hiragino Maru Gothic ProN","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif}
+h1,h2,h3{line-height:1.3;margin:.2em 0}h2{font-size:1.7rem}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+button{font:inherit;color:var(--ink);cursor:pointer;border:3px solid var(--ink);background:var(--card);border-radius:999px;padding:6px 16px;box-shadow:0 4px 0 var(--ink);transition:transform .1s}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}button:focus-visible,input:focus-visible{outline:3px solid var(--lav);outline-offset:2px}
+nav button.on,button.pri{background:var(--pink);color:#3a2540}
+main{max-width:920px;margin:auto;padding:8px 16px 60px}section{display:none}section.on{display:block}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:26px;padding:18px;margin:16px 0;box-shadow:0 6px 0 var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.mini{border:3px dashed var(--line);border-radius:20px;padding:10px 14px;background:var(--bg);cursor:pointer}.mini b{font-size:1.1rem}
+.hero{text-align:center}.hero svg{width:150px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes rock{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(9deg)}}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.4}}
+.big{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.big button{font-size:1.1rem;padding:12px 22px}
+svg{max-width:100%;height:auto}.pt{cursor:pointer}.pt:hover{filter:brightness(1.1)}.pt:active{transform:scale(.97);transform-box:fill-box;transform-origin:center}
+.pt.pop{animation:pulse .25s}
+.note{background:var(--yel);color:#4a3b4f;border-radius:18px;padding:10px 14px;margin:10px 0;font-weight:600}
+.opts{display:grid;gap:8px;margin-top:8px}.opts button{text-align:left;border-radius:18px}
+.steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;padding:6px 0 6px 44px;position:relative}
+.steps li:before{content:counter(s);position:absolute;left:0;top:6px;width:32px;height:32px;border-radius:50%;background:var(--mint);color:#2b2433;font-weight:700;text-align:center;line-height:32px;border:2px solid var(--ink)}
+input[type=range]{width:100%;accent-color:var(--pink)}
+.row{display:flex;align-items:center;gap:3px;margin:4px 0}.row i{width:64px;flex:none;font-style:normal;font-size:.85rem;color:var(--sub)}
+.row span{flex:1;height:30px;border-radius:9px;background:var(--bg);border:2px solid var(--line);min-width:0;text-align:center;font-size:.8rem;line-height:26px}
+.row span.b{margin-left:5px}.row span.h{color:#2b2433;border-color:var(--ink)}.row span.on{outline:3px solid var(--lav);transform:scale(1.12)}
+.hh{background:var(--yel)!important}.rd{background:var(--lav)!important}.sn{background:var(--mint)!important}.kk{background:var(--pink)!important}.tm{background:#ffb07a!important}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:12px}.ctl label{display:flex;gap:6px;align-items:center}
+.songs{display:grid;gap:8px;margin:10px 0}.songs button{border-radius:18px;text-align:left}.songs button.on{background:var(--mint);color:#2b2433}
+.cr,.c2{background:var(--yel)!important}.th,.tl,.tt{background:#ffb07a!important}.cus span{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+#player[hidden]{display:none}.filebtn{display:inline-block;position:relative;cursor:pointer;border:3px solid var(--ink);background:var(--pink);color:#3a2540;border-radius:999px;padding:6px 16px;box-shadow:0 4px 0 var(--ink)}.filebtn input{position:absolute;opacity:0;width:1px;height:1px}.filebtn:focus-within{outline:3px solid var(--lav);outline-offset:2px}#sc{max-height:70vh;overflow:auto;border:3px solid var(--ink);border-radius:16px;background:var(--card);padding:6px;margin-top:10px}.demo{text-align:center}.demo svg{width:100%;max-width:260px;background:linear-gradient(#fff3e6,#ffe3ef);border:3px solid var(--ink);border-radius:20px}.demo p{margin:6px 0 0;font-size:.85rem;color:var(--sub)}
+@media(min-width:780px){#player{display:grid;grid-template-columns:minmax(0,1fr) 260px;column-gap:18px}#player>*{grid-column:1}#player>.demo{grid-column:2;grid-row:1/span 9;position:sticky;top:76px;align-self:start}}
+</style></head><body>
+<nav id="nav"><button data-go="home" class="on">🏠 首頁</button><button data-go="parts">🥁 認識部件</button><button data-go="grip">✋ 握棒法</button><button data-go="pos">🪑 坐姿</button><button data-go="prac">🎵 練習專區</button><button data-go="adv">🚀 進階專區</button></nav>
+<main>
+
+<section id="home" class="on"><div class="card hero">
+<svg viewBox="0 0 120 120"><ellipse cx="60" cy="40" rx="46" ry="16" fill="#ffd35c" stroke="#4a3b4f" stroke-width="4"/><path d="M14 40v44c0 10 20 18 46 18s46-8 46-18V40c0 10-20 16-46 16S14 50 14 40z" fill="#ff8fb1" stroke="#4a3b4f" stroke-width="4"/><circle cx="42" cy="76" r="5" fill="#4a3b4f"/><circle cx="78" cy="76" r="5" fill="#4a3b4f"/><path d="M52 85q8 8 16 0" stroke="#4a3b4f" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="32" cy="86" r="6" fill="#ff5f8f" opacity=".5"/><circle cx="88" cy="86" r="6" fill="#ff5f8f" opacity=".5"/><path d="M80 8l-24 26M96 14L70 36" stroke="#4a3b4f" stroke-width="5" stroke-linecap="round"/></svg>
+<h1>爵士鼓小學堂</h1><p>跟著可愛的小鼓手，從零開始學爵士鼓！<br>先認識鼓，再學握棒和坐姿，最後到練習專區打節奏。</p>
+<div class="big"><button class="pri" data-go="parts">從認識部件開始</button><button data-go="prac">直接去練習</button></div></div>
+<div class="grid"><div class="card"><h3>🥁 認識部件</h3><p>點一點鼓，聽它的聲音，還有聽音找鼓小遊戲。</p></div><div class="card"><h3>✋ 握棒法</h3><p>看動畫學支點，再來挑戰小測驗。</p></div><div class="card"><h3>🪑 坐姿</h3><p>拖動滑桿調鼓椅，幫小鼓手找到舒服的高度。</p></div></div></section>
+
+<section id="parts"><h2>🥁 認識爵士鼓的部件</h2>
+<div class="card"><p>點點看每個部件，會有聲音和介紹喔！</p>
+<svg id="kit" viewBox="0 0 400 250" role="img" aria-label="爵士鼓組">
+<g stroke="#4a3b4f" stroke-width="3" stroke-linejoin="round">
+<path d="M45 105v125M95 56v174M335 66v164M285 34v196M110 150v80M300 160v70" fill="none"/>
+<g class="pt" data-p="tl"><rect x="280" y="150" width="70" height="40" rx="8" fill="#b5a6ff"/><ellipse cx="315" cy="150" rx="35" ry="12" fill="#fff"/></g>
+<g class="pt" data-p="tm"><rect x="212" y="92" width="56" height="34" rx="8" fill="#7fdcc0"/><ellipse cx="240" cy="92" rx="28" ry="10" fill="#fff"/></g>
+<g class="pt" data-p="th"><rect x="137" y="92" width="56" height="34" rx="8" fill="#7fdcc0"/><ellipse cx="165" cy="92" rx="28" ry="10" fill="#fff"/></g>
+<g class="pt" data-p="kk"><circle cx="200" cy="175" r="58" fill="#ff8fb1"/><circle cx="200" cy="175" r="44" fill="#ffd8e4"/><circle cx="184" cy="170" r="5" fill="#4a3b4f"/><circle cx="216" cy="170" r="5" fill="#4a3b4f"/><path d="M190 184q10 9 20 0" fill="none" stroke-linecap="round"/></g>
+<g class="pt" data-p="sn"><rect x="72" y="138" width="76" height="34" rx="8" fill="#ffd35c"/><ellipse cx="110" cy="138" rx="38" ry="13" fill="#fff"/></g>
+<g class="pt" data-p="hh"><ellipse cx="45" cy="104" rx="34" ry="7" fill="#ffc531"/><ellipse cx="45" cy="97" rx="34" ry="7" fill="#ffe28a"/></g>
+<g class="pt" data-p="cr"><ellipse cx="95" cy="56" rx="38" ry="7" fill="#ffc531"/></g>
+<g class="pt" data-p="c2"><ellipse cx="285" cy="34" rx="36" ry="7" fill="#ffd966"/></g>
+<g class="pt" data-p="rd"><ellipse cx="335" cy="66" rx="40" ry="7" fill="#ffe28a"/></g></g></svg>
+<div class="note" id="info">👆 點一個部件試試看</div>
+<div class="big"><button class="pri" id="gbtn">🎮 聽音找鼓遊戲</button></div></div>
+<div class="grid" id="pcards"></div>
+<h2 style="margin-top:28px">🎁 更多鈸與鼓</h2><p>除了基本組合，鼓手還會加入這些「特效」樂器，讓聲音更有變化。點一點聽聽看！</p><div class="grid" id="xcards"></div></section>
+
+<section id="grip"><h2>✋ 基本握棒法</h2>
+<div class="card"><svg viewBox="0 0 300 150" role="img" aria-label="握棒動畫"><ellipse cx="240" cy="128" rx="50" ry="10" fill="#7fdcc0" stroke="#4a3b4f" stroke-width="3"/>
+<g style="transform-origin:90px 70px;animation:rock 1s ease-in-out infinite"><line x1="30" y1="70" x2="250" y2="70" stroke="#c98a4b" stroke-width="9" stroke-linecap="round"/><circle cx="252" cy="70" r="7" fill="#e5b07a"/></g>
+<circle cx="90" cy="70" r="22" fill="#ff8fb1" opacity=".4" style="transform-origin:90px 70px;animation:pulse 1s infinite"/><ellipse cx="90" cy="58" rx="14" ry="10" fill="#ffc9b0" stroke="#4a3b4f" stroke-width="3"/><ellipse cx="90" cy="82" rx="14" ry="9" fill="#ffc9b0" stroke="#4a3b4f" stroke-width="3"/><text x="90" y="30" text-anchor="middle" fill="currentColor" font-size="14">支點：拇指＋食指</text></svg>
+<p>鼓棒像蹺蹺板，支點在拇指和食指之間，手放鬆，棒子就會自己彈起來。</p>
+<ol class="steps"><li>找到鼓棒重心（約離尾端三分之一處），這裡就是支點。</li><li>拇指和食指輕輕夾住，像捏著一隻小鳥，不要太用力。</li><li>其他三指自然彎曲，輕輕靠在棒子下方。</li><li>手腕放鬆上下擺動，讓棒子彈起來。</li></ol></div>
+<div class="grid"><div class="card"><h3>🤝 對稱握法 Matched</h3><p>兩手握法一模一樣，最容易上手，新手建議從這裡開始。</p></div><div class="card"><h3>🎷 傳統握法 Traditional</h3><p>左手掌心向上、棒子放在拇指與無名指之間，常見於爵士樂風格。</p></div></div>
+<div class="card"><h3>🎮 握棒小測驗</h3><div id="q-grip"></div></div></section>
+
+<section id="pos"><h2>🪑 正確坐姿</h2>
+<div class="card"><p>拖動滑桿調整鼓椅高度，幫小鼓手找到最舒服的位置！</p>
+<svg viewBox="0 0 300 240" role="img" aria-label="坐姿模擬"><line x1="10" y1="226" x2="290" y2="226" stroke="#4a3b4f" stroke-width="4" stroke-linecap="round"/><path d="M250 156v70M232 226h36" stroke="#4a3b4f" stroke-width="4" fill="none"/><rect x="205" y="128" width="90" height="28" rx="8" fill="#ffd35c" stroke="#4a3b4f" stroke-width="3"/><ellipse cx="250" cy="128" rx="45" ry="9" fill="#fff" stroke="#4a3b4f" stroke-width="3"/><g id="fig" stroke-linecap="round" stroke-linejoin="round"></g></svg>
+<label>鼓椅高度 低 ↔ 高<input type="range" id="seatr" min="0" max="100" value="10" aria-label="鼓椅高度"></label>
+<div class="note" id="pmsg"></div>
+<ul><li>髖部要略高於膝蓋，大腿微微向下傾斜。</li><li>背部挺直、身體微微前傾，雙肩放鬆。</li><li>腳踏板放在腳下，腳掌自然踩上去。</li><li>小鼓高度大約在肚臍附近，手肘自然彎曲。</li></ul></div>
+<div class="card"><h3>🎮 坐姿小測驗</h3><div id="q-pos"></div></div></section>
+
+<section id="prac"><h2>🎵 練習專區</h2><div class="card"><p>選一個難度和一首練習曲，按播放聽示範，再跟著打！</p>
+<div class="big" id="lv"></div><div class="songs" id="songs"></div></div>
+<div class="card" id="player" hidden><div class="demo"><svg id="dm" viewBox="0 0 240 250" role="img" aria-label="小鼓手示範動畫"></svg><p>👀 小鼓手示範：按播放，他會跟著節奏一起打！</p><p style="background:var(--line);color:var(--ink);border-radius:12px;padding:6px 10px;margin-top:8px"><b>🪞 注意：這是鏡像示範</b><br>小鼓手面對你，畫面的左邊就是你的左邊、右邊就是你的右邊，直接照著做才不會左右相反。</p></div><h3 id="st"></h3><p id="sd"></p><div class="ctl" id="ed" hidden><button id="clr">🧹 全部清除</button><button id="nsw">切換成 12 格（搖擺）</button><button id="bp">◀</button><b id="bl">第 1 / 1 小節</b><button id="bn">▶</button><button id="ba">➕ 加一小節</button><button id="bd">➖ 減一小節</button></div><div id="score" style="overflow-x:auto;margin:6px 0"></div><p style="font-size:.85rem;color:var(--sub);margin:0 0 8px">🎼 簡化樂譜：× 是鈸、● 是鼓；最上面放鈸，中間是小鼓，最下面是大鼓。休止符省略，下方數字是數拍提示。</p><div id="grid"></div>
+<div class="ctl"><button class="pri" id="pbtn">▶ 播放</button><label>速度 <input type="range" id="bpm" min="50" max="160" value="80" style="width:150px"><b id="bv">80</b> BPM</label><label><input type="checkbox" id="met"> 節拍器</label><label>🎯 游標同步 <input type="range" id="sy" min="-100" max="300" step="10" value="0" style="width:110px"><b id="sv">0ms</b></label></div></div><div class="card" id="lib"><h3>📚 我的檔案庫</h3><p>把常用的鼓譜 PDF 和 mp3 存在這裡，下次打開不用重新找檔案。按「開啟」就會載入到下面的 mp3 播放器或 PDF 鼓譜。</p>
+<div class="ctl"><label class="filebtn"><input type="file" id="lf" accept="application/pdf,.pdf,audio/*,.mp3,.m4a,.wav" multiple>⬆️ 上傳並儲存</label><span id="lm" style="font-size:.9rem;color:var(--sub)"></span></div>
+<div id="ll" style="margin-top:10px"></div>
+<p style="font-size:.85rem;color:var(--sub);margin:8px 0 0">檔案只存在這台裝置的瀏覽器裡，不會上傳到網路；換裝置或清除網站資料就會不見，重要的檔案請自己另外備份。</p></div>
+<div class="card" id="mp3"><h3>🎧 導入 mp3 跟著練習</h3><p>選一首你電腦或手機裡的歌曲，就能跟著它打鼓。檔案只在你的瀏覽器裡播放，不會上傳。</p>
+<div class="ctl"><label class="filebtn"><input type="file" id="mf" accept="audio/*,.mp3">📂 選擇 mp3</label> <b id="mn">尚未選擇檔案</b></div>
+<audio id="ma" controls playsinline style="width:100%;margin:10px 0" hidden></audio>
+<div class="ctl"><label>速度 <input type="range" id="mr" min="50" max="125" value="100" step="5" style="width:140px"><b id="mv">100%</b></label><button id="la">A 起點</button><button id="lb">B 終點</button><button id="lc">取消循環</button><span id="ls" style="font-size:.9rem;color:var(--sub)"></span></div>
+<p style="font-size:.85rem;color:var(--sub);margin:6px 0 0">小技巧：歌太快就把速度調慢；按「A 起點」「B 終點」可以反覆練習同一段。</p></div><div class="card" id="pdfc"><h3>🎼 導入 PDF 鼓譜 + 游標</h3><p>先在上面選好 mp3，再選鼓譜 PDF。在譜上標記幾個位置後，播放時半透明的粉紅游標就會跟著歌曲在譜上移動。檔案只在你的瀏覽器裡處理，不會上傳。</p>
+<div class="ctl"><label class="filebtn"><input type="file" id="pf" accept="application/pdf,.pdf">📄 選擇 PDF 鼓譜</label> <b id="pn">尚未選擇檔案</b></div>
+<ol style="font-size:.9rem;margin:8px 0;padding-left:1.3em"><li>勾選「標記模式」。</li><li>播放歌曲（嫌快可以調慢速度），每到一個小節，就在譜上對應的位置點一下。</li><li>標記完取消勾選再播放，游標就會移動；沒勾選時，點譜面可以跳到那個位置的歌曲時間。</li></ol>
+<div class="ctl"><label><input type="checkbox" id="mk"> ✏️ 標記模式</label><button id="mu">↩ 刪除上一個</button><button id="mc">🧹 清除標記</button><label>游標高度 <input type="range" id="ch" min="30" max="160" value="70" style="width:110px"></label><span id="mm" style="font-size:.9rem;color:var(--sub)">0 個標記</span></div>
+<div id="sc" hidden><div id="pg" style="position:relative"></div></div></div></section>
+<section id="adv"><h2>🚀 進階專區：過門 Fill 練習</h2><div class="card"><p>過門（Fill）是在樂句結尾用小鼓或通鼓打出的裝飾，用來帶出下一段。選一組過門，一邊看五線譜、一邊跟著小鼓手一起練！</p><div class="big" id="alv"></div><div class="songs" id="asongs"></div></div><div id="advp"></div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let ac,nb,M;
+function A(){
+ if(!ac){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return null;
+  try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){}
+  ac=new AC({latencyHint:"interactive"});
+  M=ac.createDynamicsCompressor();
+  const mg=ac.createGain();mg.gain.value=1.4;
+  M.connect(mg);mg.connect(ac.destination);
+  nb=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  ac.onstatechange=()=>{if(ac.state=="suspended"||ac.state=="interrupted")try{ac.resume()}catch(e){}};
+ }
+ if(ac.state!="running"){try{const p=ac.resume();p&&p.catch&&p.catch(()=>{})}catch(e){}}
+ /* iOS Safari：用一個循環播放的靜音 <audio> 讓系統改用「媒體播放」模式，才不會被側邊靜音開關擋住 */
+ if(!A.m){A.m=1;try{const n=800,b=new ArrayBuffer(44+n*2),v=new DataView(b),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,"RIFF");v.setUint32(4,36+n*2,true);w(8,"WAVEfmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,16000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,n*2,true);
+  const el=document.createElement("audio");el.setAttribute("playsinline","");el.setAttribute("webkit-playsinline","");el.loop=true;el.src=URL.createObjectURL(new Blob([b],{type:"audio/wav"}));el.style.display="none";document.body.appendChild(el);const pr=el.play();pr&&pr.catch&&pr.catch(()=>{})}catch(e){}}
+ /* iOS/Safari 解鎖：在使用者手勢中播放一段靜音 */
+ if(!A.u){try{const b=ac.createBuffer(1,1,22050),s=ac.createBufferSource();s.buffer=b;s.connect(ac.destination);s.start(0);A.u=1}catch(e){}}
+ return ac}
+function hint(st){let d=document.getElementById("audhint");if(!d){d=document.createElement("div");d.id="audhint";d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:99;background:#333;color:#fff;padding:10px 14px;border-radius:12px;font-size:.9rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.3)";document.body.appendChild(d)}d.textContent="🔇 瀏覽器尚未開啟聲音（狀態："+st+"）。請關閉手機側邊靜音開關、調高音量，再點一次。";d.style.display="block";clearTimeout(hint.t);hint.t=setTimeout(()=>d.style.display="none",5000)}
+/* 確保 AudioContext 已在 running 才排程聲音，避免第一下沒聲音 */
+function ready(fn){if(compat){fn();return}const c=A();if(!c)return;if(c.state=="running")fn();else{let done=0;const go=()=>{if(!done){done=1;fn();if(c.state!="running")hint(c.state)}};try{c.resume().then(go,go)}catch(e){go()}setTimeout(go,250)}}
+["pointerdown","touchstart","touchend","mousedown","click","keydown"].forEach(ev=>document.addEventListener(ev,()=>{A()},{capture:true,passive:true}));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&ac&&ac.state!="running")try{ac.resume()}catch(e){}});
+function noise(t,dur,type,f,g,q=1){const s=ac.createBufferSource(),fl=ac.createBiquadFilter(),v=ac.createGain();s.buffer=nb;fl.type=type;fl.frequency.value=f;fl.Q.value=q;v.gain.setValueAtTime(g,t);v.gain.exponentialRampToValueAtTime(.001,t+dur);s.connect(fl);fl.connect(v);v.connect(M);s.start(t);s.stop(t+dur)}
+function tone(t,f0,f1,dur,g,type="sine"){const o=ac.createOscillator(),v=ac.createGain();o.type=type;o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+dur);v.gain.setValueAtTime(g,t);v.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(v);v.connect(M);o.start(t);o.stop(t+dur)}
+function metal(t,dur,g,type,f,sc=1,q=.7){const v=ac.createGain(),fl=ac.createBiquadFilter();fl.type=type;fl.frequency.value=f;fl.Q.value=q;v.gain.setValueAtTime(g,t);v.gain.exponentialRampToValueAtTime(.001,t+dur);[205.3,304.4,369.6,522.7,540,800].forEach(x=>{const o=ac.createOscillator();o.type="square";o.frequency.value=x*sc;o.connect(fl);o.start(t);o.stop(t+dur)});fl.connect(v);v.connect(M)}
+const S={kk:t=>{tone(t,130,42,.32,1.1);tone(t,60,45,.45,.7);tone(t,900,200,.02,.5,"triangle")},sn:t=>{tone(t,330,190,.1,.55,"triangle");tone(t,190,170,.14,.35);noise(t,.22,"highpass",1600,.55)},pi:t=>{tone(t,480,300,.08,.5,"triangle");noise(t,.16,"highpass",2800,.6)},hh:t=>{metal(t,.06,.09,"highpass",7500);noise(t,.04,"highpass",9000,.15)},rd:t=>{noise(t,.07,"bandpass",5200,.5,2.5);tone(t,4300,4300,.35,.05);tone(t,6100,6100,.25,.03);tone(t,2900,2900,.9,.03);tone(t,3700,3700,1.1,.025);metal(t,1.3,.022,"bandpass",7000,1.5,.6);noise(t,1.1,"highpass",8000,.05)},cr:t=>{metal(t,1.3,.08,"highpass",5500);noise(t,1.2,"highpass",6000,.35)},c2:t=>{metal(t,1.1,.08,"highpass",6200,1.18);noise(t,1,"highpass",6800,.35)},sp:t=>{metal(t,.35,.08,"highpass",7500,1.3);noise(t,.3,"highpass",8000,.25)},ch:t=>{metal(t,.8,.08,"bandpass",3500,.9,.6);noise(t,.7,"bandpass",3200,.5,.7)},cl:t=>{[0,.011,.023].forEach(d=>noise(t+d,.035,"bandpass",1300,.9,1.5));noise(t+.03,.14,"bandpass",1500,.35,1.2)},cb:t=>{tone(t,540,540,.3,.14,"square");tone(t,800,800,.3,.14,"square")},th:t=>{tone(t,300,200,.3,.8);noise(t,.02,"lowpass",3000,.3)},tm:t=>{tone(t,220,145,.38,.85);noise(t,.02,"lowpass",2500,.3)},tl:t=>{tone(t,160,95,.5,.9);noise(t,.02,"lowpass",2000,.3)}};
+S.m1=t=>tone(t,1500,1500,.05,.15,"square");S.m2=t=>tone(t,1000,1000,.05,.15,"square");
+/* 相容模式：預先把每個聲音渲染成 WAV，再用一般 <audio> 播放（Web Audio 輸出無聲時使用） */
+let compat=0;const cbuf={},cpool={};
+const now=()=>compat?performance.now()/1000:ac.currentTime;
+const lat=()=>(compat?.1:ac?((ac.baseLatency||0)+(ac.outputLatency||0)):0)+(+$("#sy").value)/1000;
+function wavUrl(d,sr){const n=d.length,b=new ArrayBuffer(44+n*2),v=new DataView(b),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,"RIFF");v.setUint32(4,36+n*2,true);w(8,"WAVEfmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,n*2,true);for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,d[i]));v.setInt16(44+i*2,x<0?x*32768:x*32767,true)}return URL.createObjectURL(new Blob([b],{type:"audio/wav"}))}
+async function buildCompat(){const OAC=window.OfflineAudioContext||window.webkitOfflineAudioContext,sr=44100;
+ for(const k of Object.keys(S)){if(cbuf[k])continue;const oc=new OAC(1,Math.floor(sr*1.6),sr),sa=ac,sm=M,sn=nb;
+  try{ac=oc;M=oc.createDynamicsCompressor();const mg=oc.createGain();mg.gain.value=1.4;M.connect(mg);mg.connect(oc.destination);nb=oc.createBuffer(1,sr,sr);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;S[k](0)}finally{ac=sa;M=sm;nb=sn}
+  const r=await oc.startRendering();cbuf[k]=wavUrl(r.getChannelData(0),sr)}}
+function cplay(k,v=1){const u=cbuf[k];if(!u)return;const pool=cpool[k]=cpool[k]||[];let a=pool.find(x=>x.ended||x.paused);if(!a){a=new Audio(u);a.preload="auto";pool.push(a)}try{a.currentTime=0}catch(e){}a.volume=v;const p=a.play();p&&p.catch&&p.catch(()=>{})}
+const trig=(k,t,v=1)=>{if(compat){const d=(t-now())*1000;d<4?cplay(k,v):setTimeout(()=>cplay(k,v),d)}else if(v<1&&M){const mr=M,g=ac.createGain();g.gain.value=v;g.connect(mr);M=g;try{S[k](t)}finally{M=mr}}else S[k](t)};
+const hit=k=>compat?cplay(k):ready(()=>S[k](ac.currentTime+.01));
+const PT={kk:["大鼓","🐘","右腳踩踏板敲擊，聲音低沉，像心跳的「咚」。"],sn:["小鼓","🐶","節奏的主角，底部有響線，聲音清脆「啪」。"],th:["高音通鼓","🐥","音調最高的通鼓，常用來做填充。"],tm:["中音通鼓","🐱","音調居中，接在高音通鼓後面。"],tl:["低音通鼓","🐻","站在地上的大通鼓，聲音低而圓潤。"],hh:["踩鈸 Hi-Hat","🐰","左腳踩踏板開合，打出「嚓嚓」的節拍。"],cr:["Crash 1 (左)","🦊","用來強調重點，聲音響亮而持久，通常放在左側。"],c2:["Crash 2 (右)","🦝","第二片吊鈸，音色略有不同，通常放在右側，可以和 Crash 1 輪流強調重點。"],rd:["節奏鈸 Ride","🐼","爵士樂最愛，持續敲出「叮叮」的流動感。"]};
+/* nav */
+function go(id){const was=$("section.on");$$("section").forEach(s=>s.classList.toggle("on",s.id==id));$$("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.go==id));scrollTo(0,0);if(was&&was.id!=id){stop();if(was.id=="prac")$("#ma").pause()}}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(b.dataset.go)});
+/* parts */
+let game=null;
+$("#pcards").innerHTML=Object.entries(PT).map(([k,v])=>`<div class="mini" data-k="${k}"><b>${v[1]} ${v[0]}</b><br>${v[2]}</div>`).join("");
+$("#pcards").onclick=e=>{const m=e.target.closest(".mini");if(m)hit(m.dataset.k)};
+const XT=[["sp","Splash 小吊鈸","🐹","很小的鈸（約 8–12 吋），聲音又短又亮「啾！」，常用來輕輕點綴。"],["ch","China 中國鈸","🐲","邊緣向上翻的特殊鈸，聲音粗糙帶有爆裂感，常用在搖滾與金屬樂的重點。"],["cl","Clap Stack 拍手鈸組","👏","把三片鈸疊在一起，敲下去像電子鼓的拍手聲，funk 與流行樂很常見。"],["pi","高音小鼓 Piccolo","🐤","比小鼓更小、更淺的鼓，聲音更尖更脆，有些鼓手會當第二顆小鼓使用。"],["cb","牛鈴 Cowbell","🐮","金屬小鈴鐺，聲音「叩叩」很有特色，常夾在鼓組旁邊敲。"],["kk","雙大鼓 Double Bass","🐘","加裝第二顆大鼓（或雙踏板），兩隻腳都能踩，常見於快節奏的搖滾與金屬樂。"]];
+$("#xcards").innerHTML=XT.map(v=>`<div class="mini" data-k="${v[0]}"><b>${v[2]} ${v[1]}</b><br>${v[3]}</div>`).join("");
+$("#xcards").onclick=$("#pcards").onclick;
+$("#kit").onclick=e=>{const g=e.target.closest(".pt");if(!g)return;const k=g.dataset.p;g.classList.remove("pop");void g.getBoundingClientRect();g.classList.add("pop");
+ if(game){game.n++;const ok=k==game.t;if(ok)game.s++;$("#info").textContent=ok?"🎉 答對了！這是"+PT[k][0]:"😢 這是"+PT[k][0]+"，答案是"+PT[game.t][0];hit(k);setTimeout(round,1400)}
+ else{hit(k);$("#info").textContent=PT[k][1]+" "+PT[k][0]+"：「"+PT[k][2]+"」"}};
+function round(){if(!game)return;if(game.n>=5){$("#info").textContent="🏆 遊戲結束！你答對 "+game.s+" / 5 題";game=null;$("#gbtn").textContent="🎮 再玩一次";return}
+ game.t=(k=>k[Math.random()*k.length|0])(Object.keys(PT));$("#info").textContent="🔊 第 "+(game.n+1)+" 題：聽聽看，這是哪個部件？點點看！";setTimeout(()=>hit(game.t),400)}
+$("#gbtn").onclick=()=>{if(game){hit(game.t);return}game={n:0,s:0,t:null};$("#gbtn").textContent="🔊 再聽一次";round()};
+/* quiz */
+function quiz(el,qs){let i=0,s=0;const box=$(el);function show(){if(i>=qs.length){box.innerHTML=`<div class="note">🏆 你答對了 ${s} / ${qs.length} 題！</div><button id="rq">再玩一次</button>`;$(el+" #rq").onclick=()=>{i=0;s=0;show()};return}
+ const q=qs[i];box.innerHTML=`<b>${q.q}</b><div class="opts">${q.o.map((t,j)=>`<button data-j="${j}">${t}</button>`).join("")}</div><div id="fb"></div>`;
+ box.querySelector(".opts").onclick=e=>{const b=e.target.closest("button");if(!b)return;const ok=+b.dataset.j==q.a;if(ok)s++;box.querySelector(".opts").onclick=null;box.querySelector("#fb").innerHTML=`<div class="note">${ok?"🎉 答對了！":"😢 再想想～"} ${q.e}</div><button class="pri" id="nx">${i<qs.length-1?"下一題":"看結果"}</button>`;box.querySelector("#nx").onclick=()=>{i++;show()}}}show()}
+quiz("#q-grip",[{q:"握棒的「支點」在哪裡？",o:["拇指和食指之間","棒子最尾端","手掌心"],a:0,e:"支點像蹺蹺板的中心，棒子才能輕鬆彈起來。"},{q:"握得太用力會怎麼樣？",o:["聲音變得更大","手容易痠、棒子彈不起來","打得更快"],a:1,e:"放鬆才能讓棒子自然反彈。"},{q:"兩手握法完全一樣的是哪一種？",o:["傳統握法","對稱握法","沒有這種握法"],a:1,e:"對稱握法 Matched Grip 最適合新手。"}]);
+quiz("#q-pos",[{q:"鼓椅高度怎樣才合適？",o:["越低越好","髖部略高於膝蓋","越高越好"],a:1,e:"這樣腳和腰都最輕鬆。"},{q:"打鼓時背部要怎麼放？",o:["挺直，微微前傾","彎腰駝背","往後靠"],a:0,e:"挺直的背可以保護腰，也比較好發力。"}]);
+/* posture */
+const $i=id=>document.getElementById(id);
+function cuteHead(dx,mouth,boy){const K="#4a3b4f",H=boy?"#5a4032":"#7a5a4a",happy=mouth.startsWith("M3 9q6 9"),
+mo=happy?`<path d="M${dx-6} 12q6 11 12 0z" fill="#ff7a9a" stroke="${K}" stroke-width="2.5" stroke-linejoin="round"/><path d="M${dx-3} 17q3 3 6 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>`:`<path d="${mouth}" transform="translate(${dx-9} 9)" fill="none" stroke="${K}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+const pre=boy?`<circle cx="-29" cy="5" r="6.5" fill="#ffd9c4" stroke="${K}" stroke-width="3"/><circle cx="29" cy="5" r="6.5" fill="#ffd9c4" stroke="${K}" stroke-width="3"/>`:`<circle cx="-20" cy="-27" r="11" fill="${H}" stroke="${K}" stroke-width="3"/><circle cx="-20" cy="-27" r="5" fill="#ff9fb8"/><circle cx="20" cy="-27" r="11" fill="${H}" stroke="${K}" stroke-width="3"/><circle cx="20" cy="-27" r="5" fill="#ff9fb8"/>`,
+hair=boy?"M-29 -3C-34 -30 -22 -40 -8 -37 -4 -46 8 -46 12 -37 26 -40 34 -26 29 -3 22 -14 14 -19 6 -13 -2 -21 -12 -13 -29 -3Z":"M-29 -3C-35 -37 -8 -41 0 -32 10 -41 35 -35 29 -3 18 -18 -17 -18 -29 -3Z",
+bow=boy?"":`<path d="M-5 -34l-11 -7v14zM-5 -34l11 -7v14z" fill="#ff8fb1" stroke="${K}" stroke-width="2.5" stroke-linejoin="round" transform="translate(${dx+3} 3)"/>`,
+spark=boy?"":`<path d="M38 -26l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#ffd35c" stroke="${K}" stroke-width="1.5" stroke-linejoin="round"/>`;
+return pre+`<circle r="29" fill="#ffd9c4" stroke="${K}" stroke-width="3.5"/><path d="${hair}" fill="${H}" stroke="${K}" stroke-width="3"/><path d="M-14 -27q8 -6 18 -4" stroke="#fff" stroke-width="3" opacity=".35" fill="none" stroke-linecap="round"/>${bow}<path d="M${dx-17} -1q6 -5 12 0M${dx+5} -1q6 -5 12 0" stroke="${K}" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="${dx-11}" cy="6" rx="6" ry="7.6" fill="${K}"/><ellipse cx="${dx+11}" cy="6" rx="6" ry="7.6" fill="${K}"/><circle cx="${dx-9}" cy="2.5" r="2.7" fill="#fff"/><circle cx="${dx+13}" cy="2.5" r="2.7" fill="#fff"/><circle cx="${dx-13}" cy="9.5" r="1.3" fill="#fff"/><circle cx="${dx+9}" cy="9.5" r="1.3" fill="#fff"/><ellipse cx="${dx-22}" cy="15" rx="6" ry="3.8" fill="#ff5f8f" opacity=".55"/><ellipse cx="${dx+22}" cy="15" rx="6" ry="3.8" fill="#ff5f8f" opacity=".55"/><circle cx="${dx}" cy="10" r="1.4" fill="#d98a7a"/>${mo}${spark}`}
+function pose(){const v=+$i("seatr").value,hy=190-v*.8,hx=96,kx=176,ky=152,fx=184,fy=218;
+const ln=(a,b,c,d,col,w)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${col}" stroke-width="${w}"/>`;
+const limb=(a,b,c,d,col,w=10)=>ln(a,b,c,d,"#4a3b4f",w+7)+ln(a,b,c,d,col,w);
+const sx=hx+4,sy=hy-46,ex=sx+34,ey=sy+28,wx=ex+30,wy=ey-12;
+const mood=hy>146?"M3 15q6 -7 12 0":hy<128?"M9 9a4 4 0 1 0 .1 0Z":"M3 9q6 9 12 0";
+const K="#4a3b4f",ok=hy<=146&&hy>=128;
+$i("fig").innerHTML=`<ellipse cx="150" cy="228" rx="125" ry="6" fill="${K}" opacity=".12"/>`
++`<path d="M${hx} ${hy+20}V212M${hx} 212l-28 14M${hx} 212l28 14" stroke="${K}" stroke-width="4" fill="none" stroke-linecap="round"/>`
++`<rect x="${hx-34}" y="${hy+4}" width="68" height="17" rx="9" fill="#b5a6ff" stroke="${K}" stroke-width="3"/><path d="M${hx-24} ${hy+10}h26" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/>`
++`<rect x="${fx-6}" y="221" width="46" height="6" rx="3" fill="#cfc6e6" stroke="${K}" stroke-width="2.5"/>`
++`<line x1="${hx}" y1="${hy}" x2="${kx+12}" y2="${hy}" stroke="${ok?"#2fb88a":"#ff8a4c"}" stroke-width="2.5" stroke-dasharray="5 5"/>`
++limb(hx,hy,kx,ky,"#6f8cff",15)+limb(kx,ky,fx,fy-6,"#6f8cff",12)+`<circle cx="${kx}" cy="${ky}" r="3" fill="#fff" opacity=".5"/>`
++`<g transform="translate(${fx-2} ${fy-12})" stroke="${K}" stroke-width="3" stroke-linejoin="round"><path d="M-6 -4H6l7 9q13 2 13 10H-8z" fill="#ff8fb1"/><rect x="-9" y="14" width="37" height="6" rx="3" fill="#fff"/><path d="M1 1l5 3M4 -2l5 3" fill="none" stroke-width="2" stroke="#fff"/></g>`
++limb(sx+6,sy+4,hx+12,hy-58,"#ffc9b0",10)
++`<path d="M${hx-14} ${hy+6}Q${hx-24} ${hy-26} ${sx-12} ${sy+6}Q${sx+4} ${sy-10} ${sx+20} ${sy+4}Q${hx+30} ${hy-20} ${hx+16} ${hy+6}Z" fill="#ff8fb1" stroke="${K}" stroke-width="3.5" stroke-linejoin="round"/><line x1="${hx-12}" y1="${hy+1}" x2="${hx+14}" y2="${hy+1}" stroke="#ffd35c" stroke-width="5"/><circle cx="${hx+2}" cy="${hy-24}" r="5" fill="#ffd35c" stroke="${K}" stroke-width="2"/>`
++limb(sx,sy+2,ex,ey,"#ff8fb1",10)+limb(ex,ey,wx,wy,"#ffc9b0",8)+ln(wx-4,wy+2,wx+42,wy+10,"#c98a4b",5)+`<circle cx="${wx+42}" cy="${wy+10}" r="3.5" fill="#e5b07a" stroke="${K}" stroke-width="2"/><circle cx="${wx}" cy="${wy}" r="7" fill="#ffc9b0" stroke="${K}" stroke-width="3"/>`
++`<g transform="translate(${hx+14} ${hy-80})">${cuteHead(5,mood)}</g>`;
+$i("pmsg").textContent=hy>146?"😣 太低了！髖部沒有高過膝蓋，膝蓋抬得太高，腿會很累，再調高一點。":hy<128?"😵 太高了！大腿斜得太多，腳要伸很長，身體不穩，再調低一點。":"😊 剛剛好！髖部略高於膝蓋，大腿微微向下傾斜，小鼓手坐得很舒服。"}
+$i("seatr").oninput=pose;pose();
+/* demo drummer */
+const DT={cr:[36,64,24,1],c2:[204,58,22,1],hh:[56,118,22,1],rd:[206,104,26,1],th:[108,128,18,0,"#b5a6ff"],tm:[140,128,18,0,"#b5a6ff"],tl:[178,152,22,0,"#b5a6ff"],sn:[92,160,24,0,"#7fdcc0"]},HD={cr:"R",c2:"R",hh:"R",rd:"R",sn:"L",th:"L",tm:"L",tl:"L"},SH={L:[98,94],R:[142,94]},hov={R:"hh",L:"sn"};
+(function(){const K="#4a3b4f";let o=`<ellipse cx="120" cy="240" rx="105" ry="6" fill="${K}" opacity=".12"/>`;
+ for(const k in DT){const[x,y,r,c]=DT[k];if(c)o+=`<line x1="${x}" y1="${y}" x2="${x}" y2="238" stroke="${K}" stroke-width="3"/>`}
+ o+=`<path d="M106 150L82 188L76 220M134 150L158 188L150 220" fill="none" stroke="${K}" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/><path d="M106 150L82 188L76 220M134 150L158 188L150 220" fill="none" stroke="#5568c8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="82" cy="188" r="3" fill="#fff" opacity=".5"/><circle cx="158" cy="188" r="3" fill="#fff" opacity=".5"/>`;
+ o+=`<g id="dm-kk" style="transform-box:fill-box;transform-origin:center"><circle cx="120" cy="202" r="30" fill="#ff8fb1" stroke="${K}" stroke-width="3.5"/><circle cx="120" cy="202" r="20" fill="#fff" stroke="${K}" stroke-width="3"/><circle cx="120" cy="202" r="4" fill="${K}"/></g>`;
+ o+=`<path d="M98 150Q92 96 100 80H140Q148 96 142 150Z" fill="#7fb8ff" stroke="${K}" stroke-width="3.5" stroke-linejoin="round"/><g transform="translate(120 50)">${cuteHead(0,"M3 9q6 9 12 0",1)}</g>`;
+ for(const k in DT){const[x,y,r,c,col]=DT[k];o+=(k=="hh"?`<ellipse cx="${x}" cy="${y+6}" rx="${r}" ry="${r*.26}" fill="#e0ad3a" stroke="${K}" stroke-width="3"/>`:"")+`<g id="dm-${k}" style="transform-box:fill-box;transform-origin:center">`+(c?`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.26}" fill="#ffd35c" stroke="${K}" stroke-width="3"/><circle cx="${x}" cy="${y}" r="3" fill="#c98a4b"/>`:`<rect x="${x-r}" y="${y}" width="${2*r}" height="16" rx="5" fill="${col}" stroke="${K}" stroke-width="3"/><ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.3}" fill="#fff" stroke="${K}" stroke-width="3"/>`)+`</g>`}
+ for(const a of"LR")o+=`<path id="a${a}" fill="none" stroke="${K}" stroke-width="15" stroke-linecap="round"/><path id="b${a}" fill="none" stroke="#7fb8ff" stroke-width="9" stroke-linecap="round"/><line id="s${a}" stroke="#c98a4b" stroke-width="5" stroke-linecap="round"/><circle id="t${a}" r="3.5" fill="#e5b07a" stroke="${K}" stroke-width="2"/><circle id="h${a}" r="6.5" fill="#ffc9b0" stroke="${K}" stroke-width="3"/>`;
+ o+=`<g id="dm-ft"><rect x="134" y="226" width="32" height="8" rx="4" fill="#fff" stroke="${K}" stroke-width="3"/><path d="M138 226v-9h14l10 9z" fill="#ff8fb1" stroke="${K}" stroke-width="3" stroke-linejoin="round"/></g><g><rect x="60" y="226" width="32" height="8" rx="4" fill="#fff" stroke="${K}" stroke-width="3"/><path d="M64 226v-9h14l10 9z" fill="#ff8fb1" stroke="${K}" stroke-width="3" stroke-linejoin="round"/></g>`;
+ $("#dm").innerHTML=o})();
+function setHand(a,x,y,u){const dx=(a=="R"?14:-14)*(u?.7:1),hx=x+dx,hy=u?y+26:y-30,[sx,sy]=SH[a],d=`M${sx} ${sy}Q${(sx+hx)/2+(a=="R"?10:-10)} ${(sy+hy)/2+16} ${hx} ${hy}`;
+ $("#a"+a).setAttribute("d",d);$("#b"+a).setAttribute("d",d);const e=(i,v)=>$("#"+i+a).setAttribute(...v);e("s",["x1",hx]);e("s",["y1",hy]);e("s",["x2",x]);e("s",["y2",y]);e("t",["cx",x]);e("t",["cy",y]);e("h",["cx",hx]);e("h",["cy",hy])}
+const flash=(id,tf)=>{const g=$("#dm-"+id);g.style.transform=tf;setTimeout(()=>g.style.transform="",90)};
+function strike(k,h){if(k=="kk"){flash("kk","scale(1.08)");flash("ft","translateY(5px)");return}const a=h||HD[k];if(!a)return;const[x,y]=DT[k];hov[a]=k;setHand(a,x,y,DT[k][3]);flash(k,k=="hh"?"translateY(3px)":DT[k][3]?"translateY(2px) rotate(-4deg)":"scale(1.1)");const lf=k=="hh"?9:18;setTimeout(()=>{if(hov[a]==k)setHand(a,x,y-lf,DT[k][3])},k=="hh"?60:90)}
+function demoStep(s){if(!P)return;const ks=[];for(const r in P.r){const c=P.r[r][s];if(c&&c!=".")ks.push([r=="tt"?{h:"th",m:"tm",l:"tl"}[c]:r,r])}
+ const on=(r,i)=>{const c=P.r[r]&&P.r[r][i];return c&&c!="."},ST=["sn","th","tm","tl","tt"],gap=P.adv?2:1,stk=i=>ST.some(r=>on(r,i));
+ /* 過門／連續音：由右手開始，左右輪流（畫面是鏡像：畫面右側的手＝你的右手） */
+ const info=ks.map(([k,r])=>{const d=HD[k];if(!d)return{k};const fh=P.hand&&P.hand[r]&&P.hand[r][s];if(fh=="R"||fh=="L")return{k,h:fh};
+  if(k=="hh"||k=="rd"){let j=0;while(on(r,s-1-j))j++;const run=j>0||on(r,s+1);return{k,run,h:run&&j%2?"L":"R"}}
+  if(d=="L"){let j=0,i=s;for(;;){let g=0;for(let x=1;x<=gap;x++)if(stk(i-x)){g=x;break}if(!g)break;i-=g;j++}let run=j>0;for(let x=1;x<=gap;x++)if(stk(s+x))run=true;return{k,run,h:run?(j%2?"L":"R"):"L"}}
+  return{k,h:d}});
+ const used={};info.sort((a,b)=>(a.run?1:0)-(b.run?1:0)).forEach(o=>{if(!o.h){strike(o.k);return}let h=o.h;if(used[h])h=h=="R"?"L":"R";used[h]=1;strike(o.k,h)})}
+setHand("R",DT.hh[0],DT.hh[1]-9,1);setHand("L",DT.sn[0],DT.sn[1]-18);
+
+/* practice */
+const R={cr:"Crash 1",c2:"Crash 2",hh:"踩鈸",rd:"節奏鈸",sn:"小鼓",th:"高音通鼓",tm:"中音通鼓",tl:"低音通鼓",tt:"通鼓",kk:"大鼓"},CR=["cr","c2","hh","rd","sn","th","tm","tl","kk"];
+const m=(t,d,r,n=16)=>({t,d,r,n});
+const SN="....x.......x...",H8="x.x.x.x.x.x.x.x.";
+const L=[{n:"🐣 入門",s:[m("四分音符小步","踩鈸每拍一下，數「1 2 3 4」。小鼓在 2、4 拍，大鼓在 1、3 拍。",{hh:"x...x...x...x...",sn:SN,kk:"x.......x......."}),m("基本八分音符","踩鈸變成一拍兩下，數「1 & 2 & 3 & 4 &」。",{hh:H8,sn:SN,kk:"x.......x......."}),m("大鼓與小鼓對話","先不看踩鈸，只專心聽大鼓和小鼓輪流出現。",{sn:SN,kk:"x.......x......."}),m("吊鈸開場","第一拍同時打吊鈸和大鼓，像宣佈演出開始！",{cr:"x...............",hh:"..x.x.x.x.x.x.x.",sn:SN,kk:"x.......x......."}),m("只打踩鈸","先只打右手踩鈸，每拍一下，把「1 2 3 4」數穩。",{hh:"x...x...x...x..."}),m("踩鈸加小鼓","踩鈸每拍一下，小鼓在 2、4 拍加入。",{hh:"x...x...x...x...",sn:SN}),m("四平八穩大鼓","大鼓每一拍都踩，踩鈸打八分音符，像舞曲一樣穩。",{hh:H8,kk:"x...x...x...x..."})]},
+{n:"🐥 初級",s:[m("大鼓加一點","大鼓多出現一次，注意手腳要對齊。",{hh:H8,sn:SN,kk:"x.......x.x....."}),m("經典搖滾節奏","最常聽到的流行搖滾節奏，記得穩住速度。",{hh:H8,sn:SN,kk:"x.....x.x.x....."}),m("手腳分工","大鼓開頭連打兩下，右手踩鈸要保持不變。",{hh:H8,sn:SN,kk:"x.x.....x.x....."}),m("迪斯可節奏","大鼓每拍都踩，踩鈸打在拍子中間（反拍）。",{hh:"..x...x...x...x.",sn:SN,kk:"x...x...x...x..."}),m("大鼓追著跑","大鼓在 2 拍和 3 拍之間、4 拍附近多出現幾次，眼睛看譜，腳要準。",{hh:H8,sn:SN,kk:"x...x.x.x...x.x."}),m("流行節奏","大鼓在第 1 拍、第 2 拍後半和第 3 拍後半，是很多流行歌的基礎。",{hh:H8,sn:SN,kk:"x.....x...x.x..."}),m("半拍搖滾 Half-time","小鼓只在第 3 拍，聽起來變慢、很穩重。",{hh:H8,sn:"........x.......",kk:"x.........x....."})]},
+{n:"🐱 中級",s:[m("十六分音符踩鈸","踩鈸變成每拍四下，手要放鬆才打得穩。",{hh:"xxxxxxxxxxxxxxxx",sn:SN,kk:"x.....x...x....."}),m("小小填充 Fill","最後一拍用高、中、低通鼓繞一圈，帶出下一小節。",{hh:"x.x.x.x.x.x.....",sn:SN,kk:"x.......x.......",tt:"............hhml"}),m("大鼓切分","大鼓出現在拍子之間，聽起來更有彈性。",{hh:H8,sn:SN,kk:"x..x..x.x..x.x.."}),m("下行填充","由中音繞到低音通鼓，像滾下樓梯。",{hh:"x.x.x.x.x.x.....",sn:SN,kk:"x.......x.......",tt:"............mmll"}),m("放克節奏 Funk","踩鈸十六分音符不停，小鼓和大鼓玩切分。",{hh:"xxxxxxxxxxxxxxxx",sn:"....x..x.x..x...",kk:"x..x..x...x....."}),m("小鼓切分","小鼓除了 2、4 拍，還在第 3 拍後半多打一下。",{hh:H8,sn:"....x.....x.x...",kk:"x.......x.x....."}),m("十六分大鼓","大鼓連打兩個十六分音符，右腳要放鬆。",{hh:H8,sn:SN,kk:"x.xx....x.x....."})]},
+{n:"🦊 進階",s:[m("切分音節奏","大鼓和小鼓都出現在意想不到的位置，更有律動。",{hh:H8,sn:"....x.......x.x.",kk:"x..x..x.x.x....."}),m("爵士搖擺 Swing","一拍分成三份（12 格），節奏鈸打經典的「叮—叮叮」，踩鈸腳踩在 2、4 拍。",{rd:"x..x.xx..x.x",hh:"...x.....x..",sn:"......x.....",kk:"x.....x....."},12),m("拉丁風節奏","小鼓打出拉丁風格的重音型，大鼓穩穩墊底。",{hh:H8,sn:"x..x..x...x.x...",kk:"x.....x.x.....x."}),m("華麗收尾 Fill＋吊鈸","最後用通鼓下滑，再用吊鈸收尾，是很常見的結束招式。",{cr:"x...............",hh:"..x.x.x.x.x.....",sn:SN,kk:"x.......x.......",tt:"..........hhmmll"}),m("雙大鼓連打","大鼓連打兩下的重搖滾節奏，腳尖要靈活。",{hh:H8,sn:SN,kk:"x.xx....x.xx...."}),m("反拍重音","小鼓和大鼓都跑到反拍，踩鈸千萬不能亂。",{hh:H8,sn:"....x...x..x....",kk:"x..x....x.x....."})]}];
+const D16=".".repeat(16),G="x.x.x.x.x.x.....",mf=(t,d,r,n=16,bars=1)=>({t,d,r,n,bars,adv:1});
+const AF=[{n:"🥁 小鼓過門",s:[mf("小鼓十六分過門","最後一拍小鼓連打四下十六分音符，手順 R L R L，再回到第 1 拍。",{hh:G,sn:"....x.......xxxx",kk:"x.......x......."}),mf("小鼓八分過門","最後兩拍小鼓每半拍打一下，手順 R L R L。",{hh:"x.x.x.x.........",sn:"....x...x.x.x.x.",kk:"x..............."}),mf("小鼓加大鼓過門","小鼓打兩下，接著大鼓兩下，手腳輪流。",{hh:G,sn:"....x.......xx..",kk:"x.......x.....xx"})]},
+{n:"🪘 通鼓過門",s:[mf("通鼓下行（八分）","最後兩拍依序打高、高、中、低通鼓，由右往左繞。",{hh:"x.x.x.x.........",sn:"....x...........",kk:"x...............",tt:"........h.h.m.l."}),mf("通鼓下行（十六分）","最後兩拍用十六分音符繞通鼓：高高高高、中中、低低，手要放鬆。",{hh:"x.x.x.x.........",sn:"....x...........",kk:"x...............",tt:"........hhhhmmll"}),mf("小鼓接通鼓","小鼓打兩下，再用中、低通鼓收尾。",{hh:G,sn:"....x.......xx..",kk:"x.......x.......",tt:"..............ml"})]},
+{n:"💥 吊鈸收尾",s:[mf("小鼓過門＋吊鈸收尾","第 1 小節最後一拍小鼓過門，第 2 小節第 1 拍用吊鈸加大鼓收尾。",{hh:G+"..x.x.x.x.x.x.x.",sn:"....x.......xxxx"+SN,kk:"x.......x......."+"x.......x.......",cr:D16+"x..............."},16,2),mf("通鼓過門＋吊鈸收尾","第 1 小節最後兩拍繞通鼓，第 2 小節第 1 拍吊鈸加大鼓，像完整的樂句結尾。",{hh:"x.x.x.x........."+"..x.x.x.x.x.x.x.",sn:"....x..........."+SN,kk:"x..............."+"x.......x.......",tt:"........hhhhmmll"+D16,cr:D16+"x..............."},16,2)]},
+{n:"🎷 爵士三連音",s:[mf("三連音小鼓過門","一拍分成三份（12 格），最後一拍小鼓連打三下。",{rd:"x..x.xx.....",hh:"...x.....x..",sn:"......x..xxx",kk:"x.....x....."},12)]}];
+const rp=(a,n)=>a.repeat(n),D12=".".repeat(12),mh=(t,d,r,hand,n=16,bars=1)=>Object.assign(mf(t,d,r,n,bars),{hand}),BT="x...x...x...x...";
+const FB=[["xxxx","xxxx","xxxx","xxxx"],["xxxx","x.x.","xxxx","x.x."],["x.x.","xxxx","x...","x.x."],["x.x.","x...","xxxx","x..."],["..x.","xxxx","x...","xxxx"],["xxxx","..x.","..x.","x.x."],["x.x.","..x.","xxxx","..x."],["..x.","..x.","xxxx","x..."],["xxxx","x...","..x.","..x."],["x...","x.x.","..x.","xxxx"]];
+const KK=["x.......x.......","x.........x.....","x.......x.x.....","x.....x.x.......","x.....x...x.....","x.........x...x.","x.x.......x...x.","x.x...x.x.....x.","x.x...x...x...x.","x.x...x.x.x...x."];
+const SHIFT=FB.map((b,i)=>mf("移位過門 "+(i+1),"前 3 小節重複同一個基本節奏（第 1 拍吊鈸、小鼓在 2、4 拍），第 4 小節用小鼓和通鼓打過門。每一首大鼓的位置都不同，先把大鼓練穩再加過門。",{cr:rp("X...............",3)+D16,hh:rp("..x.x.x.x.x.x.x.",3)+D16,sn:rp(SN,3)+b[0]+".".repeat(12),tt:".".repeat(52)+b[1].replace(/x/g,"h")+b[2].replace(/x/g,"m")+b[3].replace(/x/g,"l"),kk:rp(KK[i],3)+D16},16,4));
+const ACC=[["重音在拍上","XgggXgggXgggXggg","重音落在每拍的第一個十六分音符（1 e & a 的「1」），右手重音。"],["重音在 e 上","gXgggXgggXgggXgg","重音落在「e」，變成左手重音，手腕要記得先抬高再落下。"],["重音在 & 上","ggXgggXgggXgggXg","重音落在「&」，又回到右手重音。"],["重音在 a 上","gggXgggXgggXgggX","重音落在「a」，左手重音，是最容易亂掉的一個。"],["三三四重音","XggXggXggXggXggX","每 3 個音一個重音，聽起來像和 4 拍在互相拉扯，重音位置每小節會慢慢移動。"]].map((a,i)=>mh("輕重音練習 "+"①②③④⑤"[i]+"："+a[0],"＞ 是重音（打大聲），有括號的是輕音（打小聲）。"+a[2]+"輕音時手只離鼓面一點點，重音時才舉高。",{sn:a[1],kk:BT},{sn:rp("RL",8)}));
+const PDH="RLRRLRLLRLRRLRLL";
+AF.push({n:"📖 移位過門（譜例）",s:SHIFT},{n:"📖 其他譜例",s:[mh("三連音：踩鈸輪流＋大鼓","第 1 小節踩鈸三連音 R L R L 輪流，大鼓在 1、3 拍；第 2 小節小鼓每拍打前兩個（R L），大鼓補在第三個位置。",{hh:"xxxxxxxxxxxx"+D12,kk:"x.....x....."+"..x..x..x..x",sn:D12+"xx.xx.xx.xx."},{hh:"RLRLRLRLRLRL"+D12,sn:D12+"RL.RL.RL.RL."},12,2),mf("切分大鼓＋反拍小鼓（4 小節）","踩鈸打八分音符，小鼓只打在每拍的「&」；大鼓每一小節的位置都不同，用「e」和附點的切分帶動律動。",{hh:rp("x.x.x.x.x.x.x.x.",4),sn:rp("..x...x...x...x.",4),kk:"x....x..x....x.."+"x....x..x..x.x.."+"x....x...x.x.x.."+"x..x.x...x.x.x.."},16,4)]},{n:"🔊 輕重音練習",s:ACC},{n:"🌀 Paradiddle",s:[mh("Paradiddle 基本 R L R R　L R L L","四個音一組：右左右右、左右左左。先用同一種力量打穩，注意第二組由左手開始。",{sn:"xxxxxxxxxxxxxxxx",kk:BT},{sn:PDH}),mh("Paradiddle 重音","每組第一下打重音，其他輕輕打。重音會輪流落在右手和左手，聽起來像在換手。",{sn:"XgggXgggXgggXggg",kk:BT},{sn:PDH}),mh("Paradiddle 繞通鼓","同一個手順依序移到小鼓、高音、中音、低音通鼓，每一拍換一個鼓，手順不要亂。",{sn:"xxxx............",tt:"....hhhhmmmmllll",kk:"x..............."},{sn:"RLRR............",tt:"....LRLLRLRRLRLL"}),mh("Paradiddle 手腳分工","右手只打踩鈸、左手只打小鼓，剛好變成一個有趣的律動，大鼓在每拍。",{hh:"x.xx.x..x.xx.x..",sn:".x..x.xx.x..x.xx",kk:BT},{hh:"R.RR.R..R.RR.R..",sn:".L..L.LL.L..L.LL"}),mh("雙 Paradiddle（三連音）","六個音一組：右左右左右右、左右左右左左，在三連音（12 格）裡打，每拍第一下是重音。",{sn:"XggXggXggXgg",kk:"x..x..x..x.."},{sn:"RLRLRRLRLRLL"},12),mh("Paradiddle-diddle","右左右右左左，六個音一組、重複兩次。兩個右、兩個左連在一起，手腕要放鬆。",{sn:"XgggggXggggg",kk:"x..x..x..x.."},{sn:"RLRRLLRLRRLL"},12)]});
+AF.push({n:"🎸 風格節奏",s:[mf("Disco 四踩","大鼓每拍都踩，踩鈸在反拍加重音（＞），小鼓在 2、4 拍，是舞曲的基本款。",{hh:"x.X.x.X.x.X.x.X.",sn:SN,kk:BT}),mf("放克 ②","踩鈸十六分音符不停，小鼓在 2、4 拍加一個切分，大鼓有點跳動。",{hh:"xxxxxxxxxxxxxxxx",sn:"....x.......x..x",kk:"x.x.....x.x.x..."}),mf("嘻哈 Boom-bap","大鼓和小鼓一前一後，節奏慢、重，像在點頭。",{hh:"x.x.x.x.x.x.x.x.",sn:SN,kk:"x.....x...x....."}),mf("雷鬼 One-drop","大鼓和小鼓一起落在第 3 拍，第 1 拍是空的，所以叫 one-drop（掉一拍）。",{hh:"x.x.x.x.x.x.x.x.",sn:"........x.......",kk:"........x......."}),mf("巴莎諾瓦 Bossa Nova","小鼓打巴莎諾瓦的經典節奏型（正式演奏時用小鼓邊敲），大鼓一長一短地搖擺。",{hh:"x.x.x.x.x.x.x.x.",sn:"x..x..x...x..x..",kk:"x.....x.x.....x."}),mf("藍調 Shuffle（三連音）","一拍分成三份（12 格），踩鈸打第 1 和第 3 份，聽起來像在搖擺。",{hh:"x.xx.xx.xx.x",sn:"...x.....x..",kk:"x.....x....."},12),mf("12/8 慢搖滾","把每拍分成三份，踩鈸每一份都打，像抒情歌的慢搖滾。",{hh:"xxxxxxxxxxxx",sn:"...x.....x..",kk:"x.....x....."},12),mf("Half-time Shuffle","搖擺節奏的半拍版本，小鼓只在第 3 拍，聽起來變得很穩重。",{hh:"x.xx.xx.xx.x",sn:"......x.....",kk:"x..........."},12)]},
+{n:"🥁 Rudiments 基本功",s:[mh("單擊 Single Stroke","右左右左輪流，每一下力量要一樣。先慢慢打，再逐步加速。",{sn:"xxxxxxxxxxxxxxxx",kk:BT},{sn:rp("RL",8)}),mh("雙擊 Double Stroke","右右左左，每隻手連打兩下，第二下要靠手指和反彈，不要加力。",{sn:"xxxxxxxxxxxxxxxx",kk:BT},{sn:rp("RRLL",4)}),mh("Stick Control R R L R　L L R L","右右左右、左左右左，是很有名的手順變化，換手的地方最容易亂。",{sn:"xxxxxxxxxxxxxxxx",kk:BT},{sn:"RRLRLLRLRRLRLLRL"}),mh("三倍 Paradiddle","右左右左右左右右、左右左右左右左左，比一般的 Paradiddle 多兩個交替音。",{sn:"xxxxxxxxxxxxxxxx",kk:BT},{sn:"RLRLRLRRLRLRLRLL"}),mh("六擊 Six Stroke Roll（三連音）","右左左右右左、左右右左左右，第一個和最後一個是重音。",{sn:"XggggXXggggX",kk:"x..x..x..x.."},{sn:"RLLRRLLRRLLR"},12),mh("三擊 Triple Stroke Roll（三連音）","每隻手連打三下，右右右、左左左，換手時速度要保持一樣。",{sn:"xxxxxxxxxxxx",kk:"x..x..x..x.."},{sn:"RRRLLLRRRLLL"},12)]},
+{n:"🥁 更多過門",s:[mh("小鼓漸強過門","最後兩拍從很小聲慢慢打到很大聲，手順 R L R L，要控制力量。",{hh:"x.x.x.x.........",sn:"....x...gggxxxXX",kk:"x..............."},{sn:"........RLRLRLRL"}),mf("大鼓十六分過門","最後一拍換成大鼓連打四下十六分音符，右腳要放鬆。",{hh:"x.x.x.x.x.x.....",sn:"....x...........",kk:"x.......x...xxxx"}),mf("三連音通鼓下行（最後一拍）","爵士搖擺中，最後一拍用高、中、低通鼓各一下。",{rd:"x..x.xx.....",kk:"x.....x.....",sn:"...x........",tt:".........hml"},12),mf("三連音通鼓下行（最後兩拍）","最後兩拍高中低、高中低各打一輪，要打得平均。",{rd:"x..x.xx.....",kk:"x...........",sn:"...x........",tt:"......hmlhml"},12)]});
+let P=null,bpm=80,pl=0,nt=0,st=0,tmr,q=[],raf,cur=null;
+$("#lv").innerHTML=L.map((l,i)=>`<button data-l="${i}">${l.n}</button>`).join("")+`<button data-l="c">✏️ 自己編節奏</button>`;
+$("#lv").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#lv button").forEach(x=>x.classList.toggle("pri",x==b));
+ if(b.dataset.l=="c"){$("#songs").innerHTML="";const r=Object.fromEntries(CR.map(k=>[k,".".repeat(16)]));Object.assign(r,{hh:H8,sn:SN,kk:"x.......x......."});openP({t:"✏️ 我的節奏",d:"點格子放上聲音，再點一次取消。已經先放了基本節奏，一邊聽一邊改吧！",n:16,custom:1,r});return}
+ $("#songs").innerHTML=L[b.dataset.l].s.map((s,j)=>`<button data-l="${b.dataset.l}" data-s="${j}">♪ ${s.t}</button>`).join("")};
+$("#alv").innerHTML=AF.map((l,i)=>`<button data-l="${i}">${l.n}</button>`).join("");
+$("#alv").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#alv button").forEach(x=>x.classList.toggle("pri",x==b));$("#asongs").innerHTML=AF[b.dataset.l].s.map((s,j)=>`<button data-l="${b.dataset.l}" data-s="${j}">♪ ${s.t}</button>`).join("")};
+$("#asongs").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#asongs button").forEach(x=>x.classList.toggle("on",x==b));openP(AF[b.dataset.l].s[b.dataset.s])};
+$("#songs").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#songs button").forEach(x=>x.classList.toggle("on",x==b));openP(L[b.dataset.l].s[b.dataset.s])};
+function openP(p){stop();P=p;p.bars=p.bars||1;p.off=0;if(p.adv)$("#advp").append($("#player"));else if($("#player").parentNode.id!="prac")$("#prac").insertBefore($("#player"),$("#lib"));$("#player").hidden=false;$("#st").textContent=p.t;$("#sd").textContent=p.d;$("#ed").hidden=!(p.custom||p.bars>1);["clr","nsw","ba","bd"].forEach(i=>$("#"+i).hidden=!p.custom);$("#nsw").textContent=p.n==16?"切換成 12 格（搖擺）":"切換成 16 格（一般）";drawGrid();play()}
+function drawGrid(){const O=P.off*P.n,q4=P.n/4;(P.custom||P.bars>1)&&updBar();const keys=P.custom?CR:Object.keys(R).filter(k=>P.r[k]);$("#grid").className=P.custom?"cus":"";
+ $("#grid").innerHTML=keys.map(k=>`<div class="row"><i>${R[k]}</i>${[...P.r[k]].map((c,i)=>(i<O||i>=O+P.n)?"":`<span data-r="${k}" data-s="${i}" class="${(i-O)%q4==0&&i>O?"b ":""}${c!="."?"h "+k:""}">${c!="."&&k=="tt"?{h:"高",m:"中",l:"低"}[c]:c=="X"?"＞":c=="g"?"·":""}</span>`).join("")}</div>`).join("")}
+$("#grid").onclick=e=>{const c=e.target.closest("span");if(!c||!P.custom)return;const k=c.dataset.r,i=+c.dataset.s,a=[...P.r[k]];a[i]=a[i]=="."?"x":".";P.r[k]=a.join("");c.classList.toggle("h");c.classList.toggle(k);drawScore();if(a[i]=="x")hit(k)};
+$("#clr").onclick=()=>{CR.forEach(k=>P.r[k]=".".repeat(P.n*P.bars));drawGrid();drawScore()};
+$("#nsw").onclick=()=>{stop();P.n=P.n==16?12:16;P.off=0;CR.forEach(k=>P.r[k]=".".repeat(P.n*P.bars));$("#nsw").textContent=P.n==16?"切換成 12 格（搖擺）":"切換成 16 格（一般）";drawGrid()};
+function updBar(){$("#bl").textContent="第 "+(P.off+1)+" / "+P.bars+" 小節"}
+function setBar(o){P.off=Math.max(0,Math.min(P.bars-1,o));drawGrid();drawScore()}
+$("#bp").onclick=()=>setBar(P.off-1);$("#bn").onclick=()=>setBar(P.off+1);
+$("#ba").onclick=()=>{if(P.bars>=8)return;CR.forEach(k=>P.r[k]+=P.r[k].slice(-P.n));P.bars++;setBar(P.bars-1)};
+$("#bd").onclick=()=>{if(P.bars<=1)return;CR.forEach(k=>P.r[k]=P.r[k].slice(0,-P.n));P.bars--;if(st>=P.n*P.bars)st=0;setBar(Math.min(P.off,P.bars-1))};
+function sched(s,t){for(const r in P.r){const c=P.r[r][s];if(c&&c!="."){trig(r=="tt"?{h:"th",m:"tm",l:"tl"}[c]:r,t,c=="g"?.4:1)}}if($("#met").checked&&s%(P.n/4)==0)trig(s%P.n?"m2":"m1",t)}
+function tick(){const sd=60/bpm/(P.n/4);while(nt<now()+.12){sched(st,nt);q.push([nt,st]);nt+=sd;st=(st+1)%(P.n*P.bars)}}
+function draw(){$$("#grid .on").forEach(x=>x.classList.remove("on"));while(q.length&&q[0][0]+lat()<=now()){cur=q.shift()[1];demoStep(cur)}if(cur!=null){const cb=cur/P.n|0;if(cb!==draw.lb){draw.lb=cb;if(cb!=P.off){P.off=cb;drawGrid();drawScore()}}}
+ $$("#score .cc").forEach(r=>r.setAttribute("opacity",+r.dataset.s===cur-P.off*P.n?.3:0));if(cur!=null)$$(`#grid [data-s="${cur}"]`).forEach(x=>x.classList.add("on"));if(pl)raf=requestAnimationFrame(draw)}
+function play(){draw.lb=-1;clearInterval(tmr);cancelAnimationFrame(raf);pl=1;$("#pbtn").textContent="⏹ 停止";const my=++play.id;ready(()=>{if(!pl||my!=play.id)return;nt=now()+.08;st=0;q=[];cur=null;tick();tmr=setInterval(tick,25);draw()})}play.id=0;
+function stop(){pl=0;play.id++;clearInterval(tmr);cancelAnimationFrame(raf);q=[];cur=null;$$("#grid .on").forEach(x=>x.classList.remove("on"));$$("#score .cc").forEach(r=>r.setAttribute("opacity",0));$("#pbtn").textContent="▶ 播放"}
+$("#pbtn").onclick=()=>pl?stop():play();
+$("#bpm").oninput=e=>{bpm=+e.target.value;$("#bv").textContent=bpm};
+
+function drawScore(){const n=P.n,O=P.off*P.n,spb=n/4,W=680,x0=62,w=(W-x0-24)/n,cx=s=>x0+w*s+w/2,NY={cr:40,c2:40,hh:45,rd:50,th:55,tm:60,sn:65,tl:75,kk:85},XH={cr:1,c2:1,hh:1,rd:1},cols=[];
+ const dyn={};for(let s=0;s<n;s++){const a=[];for(const r in P.r){const c=P.r[r][s+O];if(c&&c!="."){const kq=r=="tt"?{h:"th",m:"tm",l:"tl"}[c]:r;a.push(kq);dyn[s+"|"+kq]=c}}cols.push(a)}
+ const fine=n==16&&cols.some((a,s)=>a.length&&s%2==1);let o="";
+ for(let s=0;s<n;s++)o+=`<rect class="cc" data-s="${s}" x="${x0+w*s}" y="8" width="${w}" height="122" rx="6" fill="#b5a6ff" opacity="0"/>`;
+ for(let i=0;i<5;i++)o+=`<line x1="8" y1="${50+i*10}" x2="${W-12}" y2="${50+i*10}" stroke="currentColor" stroke-width="1.2"/>`;
+ o+=`<rect x="14" y="60" width="4" height="20" fill="currentColor"/><rect x="23" y="60" width="4" height="20" fill="currentColor"/><text x="43" y="68" font-size="20" font-weight="700" text-anchor="middle" fill="currentColor">4</text><text x="43" y="88" font-size="20" font-weight="700" text-anchor="middle" fill="currentColor">4</text><line x1="${W-18}" y1="50" x2="${W-18}" y2="90" stroke="currentColor" stroke-width="1.5"/><rect x="${W-13}" y="50" width="4" height="40" fill="currentColor"/>`;
+ for(let b=1;b<4;b++){const x=x0+w*spb*b;o+=`<line x1="${x}" y1="50" x2="${x}" y2="90" stroke="currentColor" stroke-dasharray="2 4" opacity=".3"/>`}
+ cols.forEach((a,s)=>{const x=cx(s);a.forEach(k=>{const y=NY[k];if(k=="cr"||k=="c2")o+=`<line x1="${x-9}" y1="40" x2="${x+9}" y2="40" stroke="currentColor" stroke-width="1.2"/>`;
+  o+=XH[k]?`<path d="M${x-4.5} ${y-4.5}l9 9m0-9l-9 9" stroke="currentColor" stroke-width="2" fill="none"/>`:`<ellipse cx="${x}" cy="${y}" rx="5.8" ry="4.2" transform="rotate(-20 ${x} ${y})" fill="currentColor"/>`})});
+ cols.forEach((a,s)=>a.forEach(k=>{if(dyn[s+"|"+k]=="g"){const x=cx(s),y=NY[k];o+=`<text x="${x-14}" y="${y+4.5}" font-size="13" fill="currentColor">(</text><text x="${x+8}" y="${y+4.5}" font-size="13" fill="currentColor">)</text>`}}));
+ if(P.hand){const lc={};for(const r in P.hand)for(let s=0;s<n;s++){const c=P.hand[r][s+O];if(c=="R"||c=="L"){const i=lc[s]=(lc[s]||0)+1;o+=`<text x="${cx(s)}" y="${103+13*i}" font-size="12" font-weight="700" text-anchor="middle" fill="${c=="R"?"#e0457b":"#3a7bd5"}">${c}</text>`}}}
+ /* 時值：每一拍依「到下一個音的距離」決定四分／八分／十六分，大鼓與上方音符共用同一根符桿，並用符槓連在一起 */
+ const sx=16,TOP=18,ln=(x,y1,y2)=>`<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" stroke="currentColor" stroke-width="1.6"/>`,
+ restSvg=(st,len)=>{const x=cx(st+(len-1)/2),f='stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+  if(sx&&n==16&&len<4||n==12&&len==1){const two=n==16&&len==1;let r=`<circle cx="${x-3}" cy="60" r="2.4" fill="currentColor"/><path d="M${x-1.5} 61Q${x+3} 61 ${x+4} 57L${x-3} 74" stroke-width="1.8" ${f}/>`;
+   if(two)r+=`<circle cx="${x-5.5}" cy="67" r="2.4" fill="currentColor"/><path d="M${x-4} 67.5Q${x+.5} 67.5 ${x+1.5} 63.5" stroke-width="1.8" ${f}/>`;
+   if(n==16&&len==3)r+=`<circle cx="${x+7}" cy="61" r="1.6" fill="currentColor"/>`;return r}
+  return `<path d="M${x-3} 54L${x+3} 62L${x-3} 70Q${x+5} 72 ${x} 79Q${x-6} 76 ${x-1} 73" stroke-width="2.2" ${f}/>`};
+ for(let b=0;b<4;b++){const s0=b*spb,on=[];for(let i=0;i<spb;i++)if(cols[s0+i].length)on.push(i);
+  if(!on.length){o+=restSvg(s0,spb);continue}
+  if(on[0]>0)o+=restSvg(s0,on[0]);
+  const nt=on.map((i,j)=>{const d=(j+1<on.length?on[j+1]:spb)-i,L=n==16?(d==1?2:d<4?1:0):(d==1?1:0),st=s0+i,ys=cols[st].map(k=>NY[k]);return{st,d,L,x:cx(st)+5.5,ys}});
+  nt.forEach(t=>{o+=ln(t.x,Math.max(...t.ys),TOP);if(cols[t.st].some(k=>dyn[t.st+"|"+k]=="X"))o+=`<path d="M${t.x-4} 4l10 3.5l-10 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;if(n==16&&t.d==3)t.ys.forEach(y=>o+=`<circle cx="${t.x+5}" cy="${y-3}" r="1.7" fill="currentColor"/>`)});
+  const runs=[];let cur=[];nt.forEach(t=>{if(t.L>0)cur.push(t);else{if(cur.length)runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
+  runs.forEach(r=>{if(r.length==1){const t=r[0];for(let f=0;f<t.L;f++){const y=TOP+f*7;o+=`<path d="M${t.x} ${y}Q${t.x+9} ${y+6} ${t.x+7} ${y+16}" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>`}return}
+   o+=`<rect x="${r[0].x-.8}" y="${TOP}" width="${r[r.length-1].x-r[0].x+1.6}" height="4" fill="currentColor"/>`;
+   r.forEach((t,i)=>{if(t.L<2)return;const nx=i<r.length-1&&r[i+1].L==2;if(nx)o+=`<rect x="${t.x}" y="25" width="${r[i+1].x-t.x}" height="3" fill="currentColor"/>`;else if(!(i>0&&r[i-1].L==2)){const l=i==0?0:-8;o+=`<rect x="${t.x+l}" y="25" width="8" height="3" fill="currentColor"/>`}})})}
+ if(n==12)for(let b=0;b<4;b++)o+=`<text x="${x0+w*spb*(b+.5)}" y="13" font-size="12" font-style="italic" text-anchor="middle" fill="currentColor">3</text>`;
+ for(let s=0;s<n;s++){const m=s%spb,lab=m==0?s/spb+1:spb==4?(m==2?"&":fine?(m==1?"e":"a"):""):(m==1?"trip":"let");o+=`<text x="${cx(s)}" y="136" font-size="${m?10:13}" text-anchor="middle" fill="currentColor" opacity="${m?.6:1}" font-weight="${m?400:700}">${lab}</text>`}
+ $("#score").innerHTML=`<svg viewBox="0 0 680 142" style="width:100%;min-width:560px;color:var(--ink)" role="img" aria-label="簡化樂譜">${o}</svg>`}
+const _dg=drawGrid;drawGrid=function(){_dg();drawScore()};
+
+/* 聲音診斷：低音＝Web Audio 直接輸出、高音＝鼓機音訊鏈、最高音＝一般 <audio>（不經 Web Audio） */
+(function(){const css="position:fixed;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:98;padding:8px 12px;border-radius:999px;border:1px solid #888;background:#fff;color:#222;font-size:.85rem;cursor:pointer";
+const b=document.createElement("button"),m=document.createElement("button");b.style.cssText=css+";right:12px";m.style.cssText=css+";right:130px";b.textContent="🔊 測試聲音";m.textContent="🔈 相容模式：關";document.body.append(m,b);
+b.onclick=()=>{const c=A();if(!c){alert("此瀏覽器不支援 Web Audio");return}
+ const go=()=>{const t=c.currentTime+.05;[[440,0,c.destination],[660,.6,M]].forEach(([f,d,dst])=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.setValueAtTime(.3,t+d);g.gain.linearRampToValueAtTime(0,t+d+.4);o.connect(g);g.connect(dst);o.start(t+d);o.stop(t+d+.45)});
+  setTimeout(()=>{const sr=22050,d=new Float32Array(sr*.4|0).map((_,i)=>.3*Math.sin(2*Math.PI*880*i/sr)*(1-i/(sr*.4)));const a=new Audio(wavUrl(d,sr));const p=a.play();p&&p.catch&&p.catch(()=>{})},1200);
+  b.textContent="狀態："+c.state+"｜低→高→最高";setTimeout(()=>b.textContent="🔊 測試聲音",4500)};
+ c.state=="running"?go():c.resume().then(go,go)};
+m.onclick=async()=>{if(compat){compat=0;stop();m.textContent="🔈 相容模式：關";return}
+ m.textContent="準備中…";try{await buildCompat();compat=1;stop();m.textContent="🔈 相容模式：開";cplay("sn")}catch(e){m.textContent="相容模式失敗";console.error(e)}}})();
+
+/* mp3 */
+(function(){const f=$("#mf"),a=$("#ma");let url,A=null,B=null;const fmt=t=>(t/60|0)+":"+String(t%60|0).padStart(2,"0"),ls=()=>$("#ls").textContent=A==null?"":"循環："+fmt(A)+" → "+(B==null?"…":fmt(B)),rate=()=>{a.playbackRate=$("#mr").value/100;a.preservesPitch=a.webkitPreservesPitch=true};
+f.onchange=()=>{const fl=f.files[0];if(!fl)return;if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(fl);a.src=url;a.hidden=false;$("#mn").textContent="🎵 "+fl.name;A=B=null;ls();rate()};
+a.onloadedmetadata=rate;
+$("#mr").oninput=e=>{$("#mv").textContent=e.target.value+"%";rate()};
+$("#la").onclick=()=>{A=a.currentTime;if(B!=null&&B<=A)B=null;ls()};
+$("#lb").onclick=()=>{if(A==null)A=0;B=a.currentTime>A+.3?a.currentTime:null;ls()};
+$("#lc").onclick=()=>{A=B=null;ls()};
+setInterval(()=>{if(!a.paused&&A!=null&&B!=null&&a.currentTime>=B)a.currentTime=A},40)})();
+
+$("#sy").oninput=e=>$("#sv").textContent=e.target.value+"ms";
+/* PDF 鼓譜 + 游標 */
+(function(){const a=$("#ma"),box=$("#sc"),pg=$("#pg"),cur=document.createElement("div"),U="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+cur.style.cssText="position:absolute;width:14px;border-radius:7px;background:rgba(255,79,139,.28);border:1px solid rgba(255,79,139,.45);pointer-events:none;display:none;z-index:2";
+let ms=[],hist=[],pages=[],pdfName="",pdfP=null;
+const key=()=>"dm:"+pdfName+"|"+$("#mn").textContent,save=()=>{try{localStorage.setItem(key(),JSON.stringify(ms))}catch(e){}},info=()=>$("#mm").textContent=ms.length+" 個標記";
+const load=()=>{if(!pdfName)return;ms=[];hist=[];try{const v=localStorage.getItem(key());if(v)ms=JSON.parse(v)}catch(e){}info();upd()};
+function pos(t){let i=-1;for(let k=0;k<ms.length;k++){if(ms[k].t<=t)i=k;else break}if(i<0)return ms[0];const m=ms[i],n=ms[i+1];
+ if(n&&n.p==m.p&&Math.abs(n.y-m.y)<.04&&n.x>m.x&&n.t>m.t){const f=Math.min(1,(t-m.t)/(n.t-m.t));return{p:m.p,x:m.x+(n.x-m.x)*f,y:m.y+(n.y-m.y)*f}}return m}
+function upd(){if(!ms.length||!pages.length){cur.style.display="none";return}const q=pos(a.currentTime||0),w=pages[q.p];if(!w){cur.style.display="none";return}
+ const H=+$("#ch").value,top=w.offsetTop+q.y*w.offsetHeight-H/2-8;cur.style.display="block";cur.style.height=H+"px";cur.style.left=(w.offsetLeft+q.x*w.offsetWidth-7)+"px";cur.style.top=top+"px";
+ if(!a.paused&&(top<box.scrollTop+10||top+H>box.scrollTop+box.clientHeight-10))box.scrollTo({top:Math.max(0,top-box.clientHeight*.3),behavior:"smooth"})}
+function loop(){upd();if(!a.paused)requestAnimationFrame(loop)}
+["seeked","timeupdate","loadedmetadata","pause"].forEach(e=>a.addEventListener(e,upd));a.addEventListener("play",loop);window.addEventListener("resize",upd);$("#ch").oninput=upd;
+$("#mf").addEventListener("change",()=>setTimeout(load,0));
+const ld=u=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=u;s.onload=ok;s.onerror=()=>no(new Error("PDF 工具載入失敗，請確認網路"));document.head.append(s)});
+const need=()=>pdfP||(pdfP=ld(U+"pdf.min.js").then(()=>ld(U+"pdf.worker.min.js")).then(()=>{pdfjsLib.GlobalWorkerOptions.workerSrc=U+"pdf.worker.min.js"}).catch(e=>{pdfP=null;throw e}));
+async function render(doc){pg.innerHTML="";pages=[];const dpr=Math.min(window.devicePixelRatio||1,2),W=pg.clientWidth||600;
+ for(let i=1;i<=Math.min(doc.numPages,30);i++){const page=await doc.getPage(i),k=W/page.getViewport({scale:1}).width,vp=page.getViewport({scale:k*dpr}),w=document.createElement("div"),c=document.createElement("canvas");
+  w.style.cssText="position:relative;line-height:0;margin-bottom:6px";c.width=vp.width;c.height=vp.height;c.style.cssText="width:100%;height:auto;display:block;background:#fff";w.append(c);pg.append(w);pages.push(w);await page.render({canvasContext:c.getContext("2d"),viewport:vp}).promise}
+ pg.append(cur)}
+$("#pf").onchange=async()=>{const f=$("#pf").files[0];if(!f)return;pdfName=f.name;$("#pn").textContent="載入中…";box.hidden=false;
+ try{await need();const doc=await pdfjsLib.getDocument({data:new Uint8Array(await f.arrayBuffer()),isEvalSupported:false}).promise;await render(doc);$("#pn").textContent="📄 "+f.name+"（"+pages.length+" 頁）";load()}
+ catch(e){$("#pn").textContent="⚠️ "+(e.message||"PDF 載入失敗");console.error(e)}};
+pg.onclick=e=>{const w=e.target.closest("#pg>div");if(!w)return;const r=w.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,p=pages.indexOf(w);
+ if($("#mk").checked){if(!a.src){$("#mm").textContent="⚠️ 請先在上面選擇 mp3";return}const t=a.currentTime;ms=ms.filter(m=>Math.abs(m.t-t)>.15);const m={t,p,x,y};ms.push(m);ms.sort((u,v)=>u.t-v.t);hist.push(m);save();info();upd()}
+ else{let b=null,d=1e9;for(const m of ms){if(m.p!=p)continue;const dd=Math.hypot(m.x-x,(m.y-y)*1.4);if(dd<d){d=dd;b=m}}if(b){a.currentTime=b.t;upd()}}};
+$("#mu").onclick=()=>{while(hist.length){const m=hist.pop(),i=ms.indexOf(m);if(i>=0){ms.splice(i,1);break}}save();info();upd()};
+$("#mc").onclick=()=>{ms=[];hist=[];save();info();upd()}})();
+
+/* 檔案庫（IndexedDB，存在這個瀏覽器裡） */
+(function(){const ll=$("#ll"),lm=$("#lm"),say=t=>lm.textContent=t;
+const dbp=()=>new Promise((ok,no)=>{if(!window.indexedDB)return no(new Error("no idb"));const r=indexedDB.open("drum-lib",1);r.onupgradeneeded=()=>r.result.createObjectStore("f",{keyPath:"id",autoIncrement:true});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+const tx=(mode,fn)=>dbp().then(d=>new Promise((ok,no)=>{const t=d.transaction("f",mode),r=fn(t.objectStore("f"));t.oncomplete=()=>ok(r.result);t.onerror=t.onabort=()=>no(t.error)}));
+const mb=n=>n>=1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB";
+async function open(id){const it=await tx("readonly",s=>s.get(id));if(!it)return;if(typeof DataTransfer=="undefined"){say("⚠️ 這個瀏覽器不支援從檔案庫開啟，請更新瀏覽器");return}
+ const pdf=it.type=="pdf",input=$(pdf?"#pf":"#mf"),dt=new DataTransfer();dt.items.add(new File([it.blob],it.name,{type:it.mime||(pdf?"application/pdf":"audio/mpeg")}));input.files=dt.files;input.dispatchEvent(new Event("change"));$(pdf?"#pdfc":"#mp3").scrollIntoView({behavior:"smooth",block:"start"})}
+async function refresh(){ll.textContent="";let items;try{items=await tx("readonly",s=>s.getAll())}catch(e){say("⚠️ 這個瀏覽器無法使用檔案庫（可能是無痕模式）");return}
+ if(!items.length){ll.textContent="還沒有儲存的檔案。";return}
+ items.sort((a,b)=>a.type.localeCompare(b.type)||a.name.localeCompare(b.name,"zh"));
+ items.forEach(it=>{const r=document.createElement("div");r.style.cssText="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:6px 0;border-top:2px dashed var(--line)";
+  const ic=document.createElement("span"),nm=document.createElement("b"),sz=document.createElement("span"),ob=document.createElement("button"),db=document.createElement("button");
+  ic.textContent=it.type=="pdf"?"📄":"🎵";nm.textContent=it.name;nm.style.cssText="flex:1;min-width:140px;word-break:break-all";sz.textContent=mb(it.size);sz.style.cssText="font-size:.85rem;color:var(--sub)";
+  ob.textContent="▶ 開啟";ob.onclick=()=>open(it.id);db.textContent="🗑 刪除";let t;
+  db.onclick=async()=>{if(db.dataset.sure){await tx("readwrite",s=>s.delete(it.id));say("已刪除："+it.name);refresh()}else{db.dataset.sure=1;db.textContent="再按一次確定";t=setTimeout(()=>{delete db.dataset.sure;db.textContent="🗑 刪除"},3000)}};
+  r.append(ic,nm,sz,ob,db);ll.append(r)})}
+$("#lf").onchange=async e=>{const fs=[...e.target.files];e.target.value="";let n=0,skip=0;
+ for(const f of fs){const pdf=/\.pdf$/i.test(f.name)||f.type=="application/pdf",au=/^audio\//.test(f.type)||/\.(mp3|m4a|wav|aac|ogg)$/i.test(f.name);if(!pdf&&!au){skip++;continue}
+  try{const all=await tx("readonly",s=>s.getAll());if(all.some(x=>x.name==f.name&&x.size==f.size)){skip++;continue}await tx("readwrite",s=>s.add({name:f.name,size:f.size,type:pdf?"pdf":"audio",mime:f.type,blob:f,added:Date.now()}));n++}
+  catch(err){say("⚠️ 儲存失敗："+(err&&err.name=="QuotaExceededError"?"儲存空間不足":(err&&err.message)||err));refresh();return}}
+ try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+ say("已儲存 "+n+" 個檔案"+(skip?"，略過 "+skip+" 個（重複，或不是 PDF／音檔）":""));refresh()};
+refresh()})();
+</script></body></html>
